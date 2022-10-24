@@ -1,0 +1,162 @@
+:root {
+    --primary-color: #d81e5b;
+    --secondary--color: #8c38ff;
+    --dark-color: #131a26;
+    --light-color: #eee;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+body {
+    background-color: var(--light-color);
+}
+
+.App {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.calculator {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 64px rgba(0,0,0,0.2);
+}
+
+/* Nav */
+.nav {
+    background-color: var(--dark-color);
+    border: 1px var(--light-color) solid;
+    display: flex;
+    position: relative;
+}
+
+.nav__menu {
+    background-color: var(--dark-color);
+    display: flex;
+}
+
+.nav__menu:hover {
+    opacity: 0.9 ;
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* .nav .nav__icon {
+} */
+
+.frame_history {
+    position: absolute;
+    min-height: 440px;
+    width: 400px;
+    background-color: #999;
+    top:58px;
+    left: 0;
+    display: none;
+}
+
+.history__search {
+    
+    display: flex;
+    /* background-color: var(--secondary--color); */
+}
+
+.txt_search {
+    margin:0 4px;
+    width: 100%;
+}
+
+.history__search-item {
+    background-color: var(--dark-color);
+    display: flex;
+    border-radius: 14px;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.history__body {
+    background-color: #fff;
+}
+
+/* calculator */
+.display {
+    padding: 16px;
+    text-align: right;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.display span {
+    font-size: 14px;
+    color: #888;
+}
+
+.css-textinput-11aywtz {
+    background-color: var(--light-color);
+    width: 100%;
+    height: 32px;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.css-text-1rynq56 {
+    display: block;
+    height: 30px;
+    background-color: #ccc;
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.inputKey {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+button {
+    appearance: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 20px;
+    padding: 16px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.operator {
+   display: flex;
+}
+
+.operator button {
+    flex: 1 1 0%;
+    background-color: var(--primary-color);
+    font-weight: 700;
+}
+
+.digits {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.digits button {
+    flex:1 1 33.333%;
+    background-color: var(--dark-color);
+}
