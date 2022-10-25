@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View, Button } from 'react-native';
 import { AiOutlineHistory,AiOutlineSearch } from 'react-icons/ai';
 import { faL } from '@fortawesome/free-solid-svg-icons';
 import { FlatList } from 'react-native-web';
@@ -120,9 +120,14 @@ function App() {
 		setSearchResult(input);
 	}
 
-	// To do : Tạo ra 1 function để hiện lên kết quả search bằng Text và có background
-	const showSearchResultItem = () => {
-
+	// Function để hiện lên kết quả search bằng Text và có background
+	const showSearchResultItem = (item) => {
+		return (
+			<View style={{backgroundColor: "#4d4d4e", width: "100%"}}>
+				<Text style={{fontSize: 20, color: "red"}}>{item.item.expression}</Text>
+				<Text style={{fontSize: 30, color: "#FF7400"}}>{item.item.result}</Text>
+			</View>
+		)
 	}
 
 	// Function to show the search result in the flat list
@@ -131,18 +136,27 @@ function App() {
 		return (
 			<FlatList
 				data={searchResult}
-				renderItem = {<TextInput></TextInput>}
+				renderItem = {showSearchResult}
 				keyExtractor = { item => item.id }
 			/>
 		)
 	}
 
+	// Hiện History và ô Search
+	const showHistoryAndSearch = () => {
+		var x = document.querySelector(".frame_history")
+		if (x.style.display === "none")
+			x.style.display = "block";
+		else
+			x.style.display = "none";
+	}
+	
 	return (
 		<div className="App">
 			<div className="calculator">
 
 				<div className='nav'>
-					<button className='nav__menu'>
+					<button className='nav__menu' onClick={() => showHistoryAndSearch()}>
 						<span>History</span> 
 						<i className='nav__icon'><AiOutlineHistory/></i> 
 					</button>
