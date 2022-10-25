@@ -7,8 +7,10 @@ function App() {
 	const [calc,setCalc] = useState("");
 	const [result,setResult] = useState("");
 
-	const ops = ['/','*','+','-','.'];
 
+	// Adding the operator that will be use in the calculator
+	const ops = ['/','*','+','-','.'];
+	
 	const updateCalc = value => {
 		if(value=='.'){
 			var reg = /\d+\.*\d*/g;
@@ -35,6 +37,7 @@ function App() {
 		// }
 	}
 
+	// Function to automatically create digits
 	const createDigits= () => {
 		const digits = [];
 
@@ -51,10 +54,12 @@ function App() {
 		return digits;
 	}
 
+	// Calculate the result, occurs when the = button is pressed
 	const calculate = () => {
 		setResult(eval(calc).toString());
 	}
 
+	// Occurs when the DEL button is pressed
 	const deleteLast = () => {
 		if(calc === '')
 		{
@@ -72,6 +77,7 @@ function App() {
 		setCalc(value);
 	}
 
+	// Occur when the AC button is pressed
 	const deleteAll = () => {
 		if(calc === '')
 		{
