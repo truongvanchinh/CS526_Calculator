@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 import { AiOutlineHistory,AiOutlineSearch } from 'react-icons/ai';
 import { faL } from '@fortawesome/free-solid-svg-icons';
+import { FlatList } from 'react-native-web';
 
 function App() {
 	const [calc,setCalc] = useState("");
 	const [result,setResult] = useState("");
+	const [history, setHistory]= useState([]);
+	const [searchResult, setSearchResult] = useState([]);
 
 
 	// Adding the operator that will be use in the calculator
@@ -86,6 +89,59 @@ function App() {
 		setCalc("");
 	}
 
+	// Calc is the expression, result is the result
+	// Pressing the = button will calculate the expression and save it in the history array
+	const onCalculateButtonPress = () => {
+		try {
+			var z = eval(calc);
+			setResult(eval(calc).toString());
+			var his = history;
+			his.push( {
+				id: 'history-item' + his.length,
+				expression: calc,
+				result: z
+			});
+			setHistory(his);
+			setSearchResult(his);
+			console.log("history hien tai la ", history);
+		} catch (e){
+		setResult("");
+	  }
+	}
+
+	// Function to show the history and search history
+	// Put this function in a Text Input in the onChangeText props
+	const searchTextInput = (searchInput) => {
+		var input = history.filter( (value, index, arr) => 
+		{
+			return value.expression.includes(searchInput) || value.result.toString().includes(searchInput);
+		} );
+		console.log(" Ket qua search la " , a);
+		setSearchResult(a);
+	}
+
+	// Function to show the render item in history
+	const rendered_item = 
+    (item) => {
+      console.log(item);
+      return <Item_view>
+        <Item_text_expression>{item.item.expression}</Item_text_expression>
+        <Item_text_result>{item.item.result}</Item_text_result>
+      </Item_view>;
+    };
+
+	// Function to show the search result in the flat list
+	// Put this function in a FlatList or a List
+	const showSearchResult = () => {
+		return (
+			<FlatList
+				data={search_result}
+				renderItem = {rendered_item}
+				keyExtractor = { item => item.id }
+			/>
+		)
+	}
+
 	return (
 		<div className="App">
 			<div className="calculator">
@@ -132,7 +188,7 @@ function App() {
 					{createDigits()}
 					<button onClick={() => updateCalc('0')}>0</button>
 					<button onClick={() => updateCalc('.')}>.</button>
-					<button onClick={calculate}>=</button>
+					<button onClick={onCalculateButtonPress}>=</button>
 				</div>
 			</div>
 
