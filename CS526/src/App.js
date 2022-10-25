@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Text, TextInput, View, Button } from 'react-native';
 import { AiOutlineHistory,AiOutlineSearch } from 'react-icons/ai';
 import { faL } from '@fortawesome/free-solid-svg-icons';
-import { FlatList } from 'react-native-web';
 
 function App() {
 	const [calc,setCalc] = useState("");
@@ -11,10 +10,7 @@ function App() {
 	const [searchResult, setSearchResult] = useState([]);
 	const [searchInput, setSearchInput] = useState('');
 
-
-	// Adding the operator that will be use in the calculator
 	const ops = ['/','*','+','-','.'];
-	
 	const updateCalc = value => {
 		if(value=='.'){
 			var reg = /\d+\.*\d*/g;
@@ -41,7 +37,6 @@ function App() {
 		// }
 	}
 
-	// Function to automatically create digits
 	const createDigits= () => {
 		const digits = [];
 
@@ -58,12 +53,10 @@ function App() {
 		return digits;
 	}
 
-	// Calculate the result, occurs when the = button is pressed
 	const calculate = () => {
 		setResult(eval(calc).toString());
 	}
 
-	// Occurs when the DEL button is pressed
 	const deleteLast = () => {
 		if(calc === '')
 		{
@@ -81,7 +74,6 @@ function App() {
 		setCalc(value);
 	}
 
-	// Occur when the AC button is pressed
 	const deleteAll = () => {
 		if(calc === '')
 		{
@@ -131,14 +123,6 @@ function App() {
 		)
 	}
 
-	// Function to show the search result in the flat list
-	// Put this function in a FlatList or a List
-	// const showSearchResult = () => {
-	// 	return (
-			
-	// 	)
-	// }
-
 	// Hiện History và ô Search
 	const showHistoryAndSearch = () => {
 		var x = document.querySelector(".frame_history")
@@ -178,7 +162,7 @@ function App() {
 					</div>
 				</div>
 				<div className="display">
-					<TextInput placeholder='Paste here!'
+					<TextInput value={calc} placeholder='Paste here!'
 						onChangeText={calc => setCalc(calc)}>
 					</TextInput>
 					<div className='inputKey'> {calc || '0'} </div>  
@@ -200,7 +184,7 @@ function App() {
 					{createDigits()}
 					<button onClick={() => updateCalc('0')}>0</button>
 					<button onClick={() => updateCalc('.')}>.</button>
-					<button onClick={onCalculateButtonPress}>=</button>
+					<button onClick={calculate}>=</button>
 				</div>
 			</div>
 
