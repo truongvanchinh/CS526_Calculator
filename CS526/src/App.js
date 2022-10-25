@@ -8,7 +8,7 @@ function App() {
 	const [result,setResult] = useState("");
 
 	const ops = ['/','*','+','-','.'];
-
+	console.log("render")
 	const updateCalc = value => {
 		if(value=='.'){
 			var reg = /\d+\.*\d*/g;
@@ -104,7 +104,7 @@ function App() {
 					</div>
 				</div>
 				<div className="display">
-					<TextInput placeholder='Paste here!'
+					<TextInput value={calc} placeholder='Paste here!'
 						onChangeText={calc => setCalc(calc)}>
 					</TextInput>
 					<div className='inputKey'> {calc || '0'} </div>  
