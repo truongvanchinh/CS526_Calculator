@@ -2,13 +2,18 @@ import { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 import { AiOutlineHistory,AiOutlineSearch } from 'react-icons/ai';
 import { faL } from '@fortawesome/free-solid-svg-icons';
+import { FlatList } from 'react-native-web';
 
 function App() {
 	const [calc,setCalc] = useState("");
 	const [result,setResult] = useState("");
+	const [history, setHistory]= useState([]);
+	const [searchResult, setSearchResult] = useState([]);
 
+
+	// Adding the operator that will be use in the calculator
 	const ops = ['/','*','+','-','.'];
-
+	
 	const updateCalc = value => {
 		if(value=='.'){
 			var reg = /\d+\.*\d*/g;
@@ -35,6 +40,7 @@ function App() {
 		// }
 	}
 
+	// Function to automatically create digits
 	const createDigits= () => {
 		const digits = [];
 
@@ -51,10 +57,12 @@ function App() {
 		return digits;
 	}
 
+	// Calculate the result, occurs when the = button is pressed
 	const calculate = () => {
 		setResult(eval(calc).toString());
 	}
 
+	// Occurs when the DEL button is pressed
 	const deleteLast = () => {
 		if(calc === '')
 		{
@@ -72,12 +80,61 @@ function App() {
 		setCalc(value);
 	}
 
+	// Occur when the AC button is pressed
 	const deleteAll = () => {
 		if(calc === '')
 		{
 			return;
 		}
 		setCalc("");
+	}
+
+	// Calc is the expression, result is the result
+	// Pressing the = button will calculate the expression and save it in the history array
+	const onCalculateButtonPress = () => {
+		try {
+			var z = eval(calc);
+			setResult(eval(calc).toString());
+			var his = history;
+			his.push( {
+				id: 'history-item' + his.length,
+				expression: calc,
+				result: z
+			});
+			setHistory(his);
+			setSearchResult(his);
+			console.log("history hien tai la ", history);
+		} catch (e){
+		setResult("");
+	  }
+	}
+
+	// Function to show the history and search history
+	// Put this function in a Text Input in the onChangeText props
+	const searchTextInput = (searchInput) => {
+		var input = history.filter( (value, index, arr) => 
+		{
+			return value.expression.includes(searchInput) || value.result.toString().includes(searchInput);
+		} );
+		console.log(" Ket qua search la " , input);
+		setSearchResult(input);
+	}
+
+	// To do : Tạo ra 1 function để hiện lên kết quả search bằng Text và có background
+	const showSearchResultItem = () => {
+
+	}
+
+	// Function to show the search result in the flat list
+	// Put this function in a FlatList or a List
+	const showSearchResult = () => {
+		return (
+			<FlatList
+				data={searchResult}
+				renderItem = {<TextInput></TextInput>}
+				keyExtractor = { item => item.id }
+			/>
+		)
 	}
 
 	return (
@@ -126,7 +183,7 @@ function App() {
 					{createDigits()}
 					<button onClick={() => updateCalc('0')}>0</button>
 					<button onClick={() => updateCalc('.')}>.</button>
-					<button onClick={calculate}>=</button>
+					<button onClick={onCalculateButtonPress}>=</button>
 				</div>
 			</div>
 
