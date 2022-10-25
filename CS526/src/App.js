@@ -116,27 +116,22 @@ function App() {
 		{
 			return value.expression.includes(searchInput) || value.result.toString().includes(searchInput);
 		} );
-		console.log(" Ket qua search la " , a);
-		setSearchResult(a);
+		console.log(" Ket qua search la " , input);
+		setSearchResult(input);
 	}
 
-	// Function to show the render item in history
-	const rendered_item = 
-    (item) => {
-      console.log(item);
-      return <Item_view>
-        <Item_text_expression>{item.item.expression}</Item_text_expression>
-        <Item_text_result>{item.item.result}</Item_text_result>
-      </Item_view>;
-    };
+	// To do : Tạo ra 1 function để hiện lên kết quả search bằng Text và có background
+	const showSearchResultItem = () => {
+
+	}
 
 	// Function to show the search result in the flat list
 	// Put this function in a FlatList or a List
 	const showSearchResult = () => {
 		return (
 			<FlatList
-				data={search_result}
-				renderItem = {rendered_item}
+				data={searchResult}
+				renderItem = {<TextInput></TextInput>}
 				keyExtractor = { item => item.id }
 			/>
 		)
