@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, TextInput, View, Button } from 'react-native';
+import { Text, TextInput, View, Button, FlatList } from 'react-native';
 import { AiOutlineHistory,AiOutlineSearch } from 'react-icons/ai';
 import { faL } from '@fortawesome/free-solid-svg-icons';
 
