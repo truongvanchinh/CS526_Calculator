@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, TextInput, View, Button } from 'react-native';
+import { Text, TextInput, View, Button, FlatList } from 'react-native';
 import { AiOutlineHistory,AiOutlineSearch } from 'react-icons/ai';
 import { faL } from '@fortawesome/free-solid-svg-icons';
 
@@ -102,17 +102,6 @@ function App() {
 	  }
 	}
 
-	// Function to show the history and search history
-	// Put this function in a Text Input in the onChangeText props
-	const searchTextInput = (inputing) => {
-		var input = history.filter( (value, index, arr) => 
-		{
-			return value.expression.includes(inputing) || value.result.toString().includes(inputing);
-		} );
-		console.log(" Ket qua search la " , input);
-		setSearchResult(input);
-	}
-
 	// Function để hiện lên kết quả search bằng Text và có background
 	const showSearchResultItem = (item) => {
 		return (
@@ -145,7 +134,18 @@ function App() {
 					<div className='frame_history'>
 						<div className='history__search'>
 							{/* To do : Làm đc hàm search ở trong text input và thể hiện nó trong history body */}
-							<span  className="txt_search"><TextInput></TextInput></span>	
+							<span className="txt_search">
+								<TextInput
+									placeholder='Type to search...'
+									onChangeText={input => {
+										var x = history.filter((value, index, arr) => 
+										{
+											return value.expression.includes(input) || value.result.toString().includes(input);
+										} );
+									console.log(" Ket qua search la " , x);
+									setSearchResult(x);
+								}}/>	
+							</span>	
 							<button className='history__search-item'>
 								<span>Search</span> 
 								<i className='nav__icon-search'><AiOutlineSearch/></i> 
