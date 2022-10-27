@@ -9,7 +9,7 @@ function App() {
 	const [history, setHistory]= useState([]);
 	const [searchResult, setSearchResult] = useState([]);
 	const [searchInput, setSearchInput] = useState('');
-
+	
 	const ops = ['/','*','+','-','.'];
 	const updateCalc = value => {
 		if(value=='.'){
@@ -54,7 +54,11 @@ function App() {
 	}
 
 	const calculate = () => {
+		if(ops.includes(calc.slice(-1))){
+			return;	
+		}
 		setResult(eval(calc).toString());
+		onCalculateButtonPress()
 	}
 
 	const deleteLast = () => {
@@ -105,9 +109,8 @@ function App() {
 	// Function để hiện lên kết quả search bằng Text và có background
 	const showSearchResultItem = (item) => {
 		return (
-			<View style={{backgroundColor: "#4d4d4e", width: "100%"}}>
-				<Text style={{fontSize: 20, color: "red"}}>{item.item.expression}</Text>
-				<Text style={{fontSize: 30, color: "#FF7400"}}>{item.item.result}</Text>
+			<View style={{backgroundColor: "#ccc",marginBottom:"4px",marginTop:"4px", width: "100%"}}>
+				<Text style={{fontSize: 20, color: "red", width: "100%"}}>{item.item.expression} = {item.item.result}</Text>
 			</View>
 		)
 	}
@@ -131,7 +134,7 @@ function App() {
 						<i className='nav__icon'><AiOutlineHistory/></i> 
 					</button>
 
-					<div className='frame_history'>
+					<div  className='frame_history'>
 						<div className='history__search'>
 							{/* To do : Làm đc hàm search ở trong text input và thể hiện nó trong history body */}
 							<span className="txt_search">
@@ -146,18 +149,17 @@ function App() {
 									setSearchResult(x);
 								}}/>	
 							</span>	
-							<button className='history__search-item'>
-								<span>Search</span> 
-								<i className='nav__icon-search'><AiOutlineSearch/></i> 
-							</button>
+							
 						</div>
 
 						<div className='history__body'>
-							<FlatList
+							<FlatList style={{width:"100%"}}
 								data={searchResult}
 								renderItem = {showSearchResultItem}
-								keyExtractor = { item => item.id }
+								keyExtractor = { (item) => item.id }
 							/>
+
+
 						</div>
 					</div>
 				</div>

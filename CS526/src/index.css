@@ -86,7 +86,10 @@ body {
 }
 
 .history__body {
-    background-color: #fff;
+    background-color: var(--dark-color);
+    display: block;
+    height: 400px;
+    width: 100%;
 }
 
 /* calculator */
