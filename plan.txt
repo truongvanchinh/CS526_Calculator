@@ -9,3 +9,9 @@ history vừa chọn ( nghĩa là sau khi nhấn vào history, tiếp tục nh�
 
 - Nếu dư thời gian: Tạo khả năng vuốt sang trái và phải để xóa history (hoặc phải để xóa, 
 trái để phục hồi cái vừa xóa- TH xóa nhầm)
+
+
+dự định vào ngày chủ nhật: 
+- đọc về reactnavigator trên trang chính. 
+- Coi history như là 1 màn  hình riêng, khiến cho khi ta nhấn vào nút lịch sử sẽ đem ta tới 1 màn hình khác
+- HƯỚng dẫn: thực hiện tương tự cái app gấu từng code

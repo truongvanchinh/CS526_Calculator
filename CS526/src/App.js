@@ -114,10 +114,12 @@ function App() {
 			</View>
 		)
 	}
-
+	var indexBug = 1;
 	// Hiện History và ô Search
 	const showHistoryAndSearch = () => {
-		var x = document.querySelector(".frame_history")
+		console.log('bug' + indexBug)
+		indexBug++;
+		var x = document.querySelector(".frame_history") //có thể do lệnh này dẫn đến lỗi phải click 2 lần. 
 		if (x.style.display === "none")
 			x.style.display = "block";
 		else
@@ -149,7 +151,6 @@ function App() {
 									setSearchResult(x);
 								}}/>	
 							</span>	
-							
 						</div>
 
 						<div className='history__body'>
@@ -158,8 +159,6 @@ function App() {
 								renderItem = {showSearchResultItem}
 								keyExtractor = { (item) => item.id }
 							/>
-
-
 						</div>
 					</div>
 				</div>
