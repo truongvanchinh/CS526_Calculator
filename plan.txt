@@ -1,0 +1,11 @@
+- thêm menu 3 gạch vào góc trên bên trái
+- đưa history vào menu 
+- tạo khả năng nhấn vào các history -> hiển thị phép tính đó lên màn hình, nếu tính toán với giá trị của 
+history vừa chọn ( nghĩa là sau khi nhấn vào history, tiếp tục nhấn vào các dấu phép tính) thì add thêm 2 gtri mới vào history
+    + history vừa chọn
+    + phép tính mới vừa tính
+
+- chỉnh lại màu/bố cục cho đẹp. 
+
+- Nếu dư thời gian: Tạo khả năng vuốt sang trái và phải để xóa history (hoặc phải để xóa, 
+trái để phục hồi cái vừa xóa- TH xóa nhầm)
