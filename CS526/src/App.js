@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, TextInput, View, Button, FlatList } from 'react-native';
+import { Text, TextInput, View, Button, FlatList,StyleSheet } from 'react-native';
 import { AiOutlineHistory,AiOutlineSearch } from 'react-icons/ai';
 import { faL } from '@fortawesome/free-solid-svg-icons';
 
@@ -138,7 +138,7 @@ function App() {
 						<div className='history__search'>
 							{/* To do : Làm đc hàm search ở trong text input và thể hiện nó trong history body */}
 							<span className="txt_search">
-								<TextInput
+								<TextInput style={styles.paste_input}
 									placeholder='Type to search...'
 									onChangeText={input => {
 										var x = history.filter((value, index, arr) => 
@@ -164,11 +164,14 @@ function App() {
 					</div>
 				</div>
 				<div className="display">
-					<TextInput value={calc} placeholder='Paste here!'
+
+					<TextInput style={styles.paste_input} value={calc} placeholder='input'
 						onChangeText={calc => setCalc(calc)}>
 					</TextInput>
-					<div className='inputKey'> {calc || '0'} </div>  
-					{<Text> {result} </Text>}
+
+					{/* <div className='inputKey'> {calc || '0'} </div>   */}
+
+					{<Text style={styles.output} > {result} </Text>}
 					
 				</div>
 
@@ -192,6 +195,25 @@ function App() {
 
 		</div>
 	);
+	
 }
+
+const styles = StyleSheet.create({
+	paste_input: {
+		backgroundColor : "#eee",
+		width: '100%',
+    	height: 32,
+    	fontSize: 20,
+    	marginVertical : 10,
+	},
+	output:{
+		display: 'block',
+    	height: 30,
+    	backgroundColor: '#ccc',
+    	marginVertical: 10,
+    	fontSize: 20,
+		width: '100%',
+	}
+  });
 
 export default App;
