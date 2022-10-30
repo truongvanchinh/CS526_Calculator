@@ -10,6 +10,8 @@
 
   Change the directory into CS526
   
+  install yarn
+  ### npm install --global yarn
   ### `yarn install`
 
   Install all the required dependencies needed to run the program
