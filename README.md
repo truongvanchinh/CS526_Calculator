@@ -10,8 +10,8 @@
 
   Change the directory into CS526
   
-  install yarn
-  ### npm install --global yarn
+  ### install yarn
+  ### `npm install --global yarn`
   ### `yarn install`
 
   Install all the required dependencies needed to run the program
@@ -29,7 +29,10 @@
   ### `cd Calculator_in_android`
 
   Change the directory into Calculator_in_android
-
+  
+  ### install yarn
+  ### `npm install --global yarn`
+  
   ### `yarn install`
 
   Install all the required dependencies needed to run the program
