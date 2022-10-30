@@ -1,0 +1,1 @@
+- Khi mới load web lần đầu, phải nhấn vào history 2 lần mới hiện lên
